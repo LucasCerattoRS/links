@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Lucas Ceratto — links</title>
+<meta name="description" content="Projetos, redes e contato do Lucas Ceratto Dagnese. Software local-first e IA on-device, sem anúncios.">
+<meta name="theme-color" content="#0b1020">
+<style>
+:root{--fg:#f4f6fb;--mut:#aab3c5;--glass:rgba(255,255,255,.08);--bd:rgba(255,255,255,.16);--ac:#7cc4ff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--fg);font:16px/1.4 system-ui,sans-serif;
+background:radial-gradient(circle at 20% 0,#2b3a8f 0,transparent 45%),radial-gradient(circle at 90% 100%,#0e7a6b 0,transparent 45%),#0b1020;background-attachment:fixed}
+main{max-width:480px;margin:0 auto;padding:40px 16px calc(48px + env(safe-area-inset-bottom));text-align:center}
+.av{width:96px;height:96px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;font-size:2rem;font-weight:700;background:linear-gradient(135deg,#7cc4ff,#6ee7b7);color:#0b1020;box-shadow:0 0 0 4px var(--bd)}
+h1{margin:0;font-size:1.5rem}
+.sub{margin:6px 0 24px;color:var(--mut)}
+h2{margin:28px 0 10px;font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:var(--mut)}
+.grid{display:grid;gap:10px}
+a.b,button.b{display:flex;align-items:center;gap:14px;width:100%;min-height:56px;padding:12px 16px;text-align:left;font:inherit;color:var(--fg);text-decoration:none;background:var(--glass);border:1px solid var(--bd);border-radius:16px;backdrop-filter:blur(8px);cursor:pointer;transition:transform .15s,border-color .15s}
+a.b:hover,button.b:hover,a.b:focus-visible,button.b:focus-visible{transform:translateY(-2px);border-color:var(--ac);outline:none}
+.i{font-size:1.5rem;flex:none;width:32px;text-align:center}
+.t b{display:block}
+.t small{color:var(--mut)}
+.wa{background:#1fa855;border-color:#1fa855}.wa .t small{color:#e6ffee}
+footer{margin-top:32px;color:var(--mut);font-size:.8rem}
+@media(min-width:760px){
+ main{max-width:760px;padding-top:72px}
+ .av{width:120px;height:120px;font-size:2.4rem}
+ h1{font-size:2rem}
+ .two{grid-template-columns:1fr 1fr}
+}
+@media(prefers-reduced-motion:reduce){a.b,button.b{transition:none}}
+</style>
+</head>
+<body>
+<main>
+<div class="av" aria-hidden="true">LC</div>
+<h1>Lucas Ceratto Dagnese</h1>
+<p class="sub">Software que roda na sua máquina · IA local · CNC<br>Sem anúncios, sem rastreio.</p>
+
+<div class="grid">
+ <a class="b wa" href="https://wa.me/5554996993241"><span class="i">💬</span><span class="t"><b>WhatsApp</b><small>Fale comigo direto</small></span></a>
+</div>
+<div class="grid two" style="margin-top:10px">
+ <a class="b" href="https://www.linkedin.com/in/lucas-ceratto-dagnese-b404b439a/"><span class="i">💼</span><span class="t"><b>LinkedIn</b><small>Perfil profissional</small></span></a>
+ <a class="b" href="https://github.com/LucasCerattoRS"><span class="i">🐙</span><span class="t"><b>GitHub</b><small>Todo o código</small></span></a>
+ <a class="b" href="https://medium.com/@lukelucanolightknowledge"><span class="i">✍️</span><span class="t"><b>Medium</b><small>Artigos</small></span></a>
+</div>
+
+<h2>Ferramentas para usar</h2>
+<div class="grid two">
+ <a class="b" href="https://github.com/LucasCerattoRS/video-downloader"><span class="i">⬇️</span><span class="t"><b>Video Downloader</b><small>Cole o link, baixe. Roda local</small></span></a>
+ <a class="b" href="https://github.com/LucasCerattoRS/TranscritorNPU"><span class="i">🎙️</span><span class="t"><b>Transcritor NPU</b><small>Áudio e vídeo viram texto, offline</small></span></a>
+</div>
+
+<h2>Projetos e estudos</h2>
+<div class="grid two">
+ <a class="b" href="https://github.com/LucasCerattoRS/the-farmer-was-replaced-lab"><span class="i">🌾</span><span class="t"><b>TFWR Lab</b><small>Aprendendo programação com o jogo</small></span></a>
+ <a class="b" href="https://github.com/LucasCerattoRS/horizonte-estudos"><span class="i">📚</span><span class="t"><b>Horizonte Estudos</b><small>Banco de questões e material</small></span></a>
+ <a class="b" href="https://github.com/LucasCerattoRS/ai-coop"><span class="i">🤝</span><span class="t"><b>AI Coop</b><small>Agentes de IA trabalhando juntos</small></span></a>
+ <a class="b" href="https://github.com/LucasCerattoRS/finan"><span class="i">💵</span><span class="t"><b>Finan</b><small>Finanças pessoais offline-first</small></span></a>
+</div>
+
+<h2>Apoie</h2>
+<div class="grid">
+ <button class="b" id="pix" type="button"><span class="i">☕</span><span class="t"><b>Apoiar via Pix</b><small id="pixmsg">Toque para copiar a chave</small></span></button>
+</div>
+
+<footer>Feito à mão, sem anúncios.</footer>
+</main>
+<script>
+const k="54996993241",m=document.getElementById("pixmsg"),o=m.textContent;
+document.getElementById("pix").onclick=async()=>{
+ try{await navigator.clipboard.writeText(k);m.textContent="Chave copiada: "+k}catch{m.textContent="Chave Pix: "+k}
+ setTimeout(()=>m.textContent=o,4000)};
+</script>
+</body>
+</html>
