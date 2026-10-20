@@ -82,6 +82,10 @@ footer{margin:24px 8px 0;padding-top:10px;border-top:1px solid var(--rule);displ
  .path{display:none}
  .list{grid-template-columns:1fr 1fr}
  .list .wa{grid-column:1/-1}
+ .contact{grid-template-columns:repeat(3,1fr)}
+ .list>li{display:flex}
+ .list>li>.row{height:100%}
+ .row{align-content:start;padding-top:14px}
  .main{padding-top:8px}
  footer{grid-column:1/-1}
 }
@@ -104,7 +108,7 @@ footer{margin:24px 8px 0;padding-top:10px;border-top:1px solid var(--rule);displ
 
  <main class="main">
   <h2>Contato</h2>
-  <ul class="list">
+  <ul class="list contact">
    <li class="wa"><a class="row primary" href="https://wa.me/5554996993241"><b>WhatsApp</b><i>→</i><small>Chame direto, respondo por lá</small></a></li>
    <li><a class="row" href="https://www.linkedin.com/in/lucas-ceratto-dagnese-b404b439a/"><b>LinkedIn</b><i>→</i><small>Trajetória e contato profissional</small></a></li>
    <li><a class="row" href="https://github.com/LucasCerattoRS"><b>GitHub</b><i>→</i><small>Todo o código, aberto</small></a></li>
