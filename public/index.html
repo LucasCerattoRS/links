@@ -139,10 +139,12 @@ footer{margin:24px 8px 0;padding-top:10px;border-top:1px solid var(--rule);displ
 </div>
 <script>
 const k="+5554996993241",m=document.getElementById("pixmsg"),o=m.textContent;let t;
+let tentativa=0;
 document.getElementById("pix").onclick=async()=>{
+ const atual=++tentativa;
  clearTimeout(t);
- try{await navigator.clipboard.writeText(k);m.textContent="Chave copiada: "+k;t=setTimeout(()=>m.textContent=o,4000)}
- catch{m.textContent="Chave Pix (telefone): "+k}};
+ try{await navigator.clipboard.writeText(k);if(atual!==tentativa)return;m.textContent="Chave copiada: "+k;t=setTimeout(()=>m.textContent=o,4000)}
+ catch{if(atual!==tentativa)return;m.textContent="Chave Pix (telefone): "+k}};
 </script>
 </body>
 </html>
