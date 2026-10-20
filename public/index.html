@@ -17,7 +17,7 @@
 /* Papel vegetal + tinta azul; no escuro vira cianotipia */
 :root{
  --paper:#eef0ee;--sheet:#f8f9f7;--ink:#14307a;--mut:#4d5f8f;--rule:#14307a;--faint:rgba(20,48,122,.18);
- --cut:#e4570f;--cut-ink:#fff;
+ --cut:#b8420a;--cut-ink:#fff;
  --disp:"Barlow Condensed","Arial Narrow",Impact,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
 }
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){
@@ -127,17 +127,18 @@ footer{margin:24px 8px 0;padding-top:10px;border-top:1px solid var(--rule);displ
 
   <h2>Apoio</h2>
   <ul class="list">
-   <li class="wa"><button class="row" id="pix" type="button"><b>Apoiar com Pix</b><i aria-hidden="true">⧉</i><small id="pixmsg">Toque para copiar a chave</small></button></li>
+   <li class="wa"><button class="row" id="pix" type="button"><b>Apoiar com Pix</b><i aria-hidden="true">⧉</i><small id="pixmsg" aria-live="polite">Toque para copiar a chave</small></button></li>
   </ul>
  </main>
 
  <footer><span>Feito à mão, 2026</span><span>Folha única · escala 1:1</span></footer>
 </div>
 <script>
-const k="54996993241",m=document.getElementById("pixmsg"),o=m.textContent;
+const k="+5554996993241",m=document.getElementById("pixmsg"),o=m.textContent;let t;
 document.getElementById("pix").onclick=async()=>{
- try{await navigator.clipboard.writeText(k);m.textContent="Chave copiada: "+k}catch{m.textContent="Chave Pix (telefone): "+k}
- setTimeout(()=>m.textContent=o,4000)};
+ clearTimeout(t);
+ try{await navigator.clipboard.writeText(k);m.textContent="Chave copiada: "+k;t=setTimeout(()=>m.textContent=o,4000)}
+ catch{m.textContent="Chave Pix (telefone): "+k}};
 </script>
 </body>
 </html>
