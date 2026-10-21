@@ -4,16 +4,16 @@ const { test } = require('node:test');
 const { runInNewContext } = require('node:vm');
 
 const html = readFileSync(`${__dirname}/../public/index.html`, 'utf8');
-const script = html.match(/<script>([\s\S]*?)<\/script>/)[1]
-  .replace(/const k="[^"]*"/, 'const k="chave-de-teste"');
+const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
 
 function page(clipboard) {
   const message = { textContent: 'Mensagem inicial' };
-  const button = {};
+  const button = { hidden: true };
+  const key = { textContent: 'chave-de-teste' };
   const timers = new Map();
   let timerId = 0;
   runInNewContext(script, {
-    document: { getElementById: id => id === 'pix' ? button : message },
+    document: { getElementById: id => ({ pix: button, pixmsg: message, pixkey: key })[id] },
     navigator: { clipboard },
     setTimeout(callback) { timers.set(++timerId, callback); return timerId; },
     clearTimeout(id) { timers.delete(id); },
@@ -85,4 +85,10 @@ test('duas cópias sobrepostas mantêm somente o temporizador mais recente', asy
   await second;
   assert.equal(view.message.textContent, 'Chave copiada: chave-de-teste');
   assert.equal(view.timers.size, 1);
+});
+
+test('habilita a cópia somente após inicializar o script', () => {
+  const view = page(undefined);
+  assert.equal(view.button.hidden, false);
+  assert.equal(typeof view.button.onclick, 'function');
 });
