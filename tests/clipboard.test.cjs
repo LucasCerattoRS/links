@@ -8,12 +8,11 @@ const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
 
 function page(clipboard) {
   const message = { textContent: 'Mensagem inicial' };
-  const button = { hidden: true };
-  const key = { textContent: 'chave-de-teste' };
-  const timers = new Map();
+  const button = {};
+    const timers = new Map();
   let timerId = 0;
   runInNewContext(script, {
-    document: { getElementById: id => ({ pix: button, pixmsg: message, pixkey: key })[id] },
+    document: { getElementById: id => ({ pix: button, pixmsg: message })[id] },
     navigator: { clipboard },
     setTimeout(callback) { timers.set(++timerId, callback); return timerId; },
     clearTimeout(id) { timers.delete(id); },
@@ -22,9 +21,9 @@ function page(clipboard) {
 }
 
 test('copia a chave e restaura a mensagem após o aviso', async () => {
-  const view = page({ async writeText(value) { assert.equal(value, 'chave-de-teste'); } });
+  const view = page({ async writeText(value) { assert.equal(value, '+5554996993241'); } });
   await view.button.onclick();
-  assert.equal(view.message.textContent, 'Chave copiada: chave-de-teste');
+  assert.equal(view.message.textContent, 'Chave copiada: +5554996993241');
   assert.equal(view.timers.size, 1);
   [...view.timers.values()][0]();
   assert.equal(view.message.textContent, 'Mensagem inicial');
@@ -33,14 +32,14 @@ test('copia a chave e restaura a mensagem após o aviso', async () => {
 test('exibe a chave quando a permissão de cópia é negada', async () => {
   const view = page({ async writeText() { throw new Error('Permissão negada'); } });
   await view.button.onclick();
-  assert.equal(view.message.textContent, 'Chave Pix (telefone): chave-de-teste');
+  assert.equal(view.message.textContent, 'Chave Pix (telefone): +5554996993241');
   assert.equal(view.timers.size, 0);
 });
 
 test('exibe a chave quando a API de cópia não existe', async () => {
   const view = page(undefined);
   await view.button.onclick();
-  assert.equal(view.message.textContent, 'Chave Pix (telefone): chave-de-teste');
+  assert.equal(view.message.textContent, 'Chave Pix (telefone): +5554996993241');
 });
 
 test('uma cópia antiga não apaga a chave exibida após falha mais recente', async () => {
@@ -55,7 +54,7 @@ test('uma cópia antiga não apaga a chave exibida após falha mais recente', as
   finishFirst();
   await first;
   for (const callback of view.timers.values()) callback();
-  assert.equal(view.message.textContent, 'Chave Pix (telefone): chave-de-teste');
+  assert.equal(view.message.textContent, 'Chave Pix (telefone): +5554996993241');
   assert.equal(view.timers.size, 0);
 });
 
@@ -70,7 +69,7 @@ test('uma falha antiga não sobrescreve o sucesso da tentativa mais recente', as
   await view.button.onclick();
   failFirst(new Error('Permissão negada'));
   await first;
-  assert.equal(view.message.textContent, 'Chave copiada: chave-de-teste');
+  assert.equal(view.message.textContent, 'Chave copiada: +5554996993241');
   assert.equal(view.timers.size, 1);
 });
 
@@ -83,12 +82,6 @@ test('duas cópias sobrepostas mantêm somente o temporizador mais recente', asy
   await first;
   finish[1]();
   await second;
-  assert.equal(view.message.textContent, 'Chave copiada: chave-de-teste');
+  assert.equal(view.message.textContent, 'Chave copiada: +5554996993241');
   assert.equal(view.timers.size, 1);
-});
-
-test('habilita a cópia somente após inicializar o script', () => {
-  const view = page(undefined);
-  assert.equal(view.button.hidden, false);
-  assert.equal(typeof view.button.onclick, 'function');
 });

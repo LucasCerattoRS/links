@@ -70,10 +70,6 @@ h2::after{content:"";flex:1;border-top:1px solid var(--rule)}
 .primary::after{background:var(--ink)}
 .primary:hover i,.primary:focus-visible i{color:inherit}
 
-.row[hidden]{display:none}
-.pix-key{margin:10px 8px 0;font-size:12px;color:var(--mut);overflow-wrap:anywhere}
-.pix-key span{color:var(--ink);user-select:all}
-
 footer{margin:24px 8px 0;padding-top:10px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:12px;font-size:11px;color:var(--mut)}
 
 /* desktop: carimbo à esquerda, peças à direita */
@@ -135,18 +131,16 @@ footer{margin:24px 8px 0;padding-top:10px;border-top:1px solid var(--rule);displ
 
   <h2>Apoio</h2>
   <ul class="list">
-   <li class="wa"><button class="row" id="pix" type="button" hidden><b>Apoiar com Pix</b><i aria-hidden="true">⧉</i><small id="pixmsg" aria-live="polite">Toque para copiar a chave</small></button></li>
+   <li class="wa"><button class="row" id="pix" type="button"><b>Apoiar com Pix</b><i aria-hidden="true">⧉</i><small id="pixmsg" aria-live="polite">Toque para copiar a chave</small></button></li>
   </ul>
-  <p class="pix-key">Chave Pix (telefone): <span id="pixkey">+5554996993241</span></p>
  </main>
 
  <footer><span>Feito à mão, 2026</span><span>Folha única · escala 1:1</span></footer>
 </div>
 <script>
-const k=document.getElementById("pixkey").textContent,m=document.getElementById("pixmsg"),o=m.textContent;let t;
+const k="+5554996993241",m=document.getElementById("pixmsg"),o=m.textContent;let t;
 let tentativa=0;
 const pix=document.getElementById("pix");
-pix.hidden=false;
 pix.onclick=async()=>{
  const atual=++tentativa;
  clearTimeout(t);
