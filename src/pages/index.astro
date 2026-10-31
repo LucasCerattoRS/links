@@ -1,6 +1,7 @@
 ---
 import { GlassView } from 'expo-glass-effect';
 import Row from '../components/Row.astro';
+import { sections, pix } from '../links';
 import '../styles.css';
 import '../glass/glass.css';
 ---
@@ -35,27 +36,14 @@ import '../glass/glass.css';
  <svg class="path" viewBox="0 0 400 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 7 H120 L132 2 L144 12 L156 7 H400"/></svg>
 
  <main class="main">
-  <h2>Contato</h2>
-  <ul class="list contact">
-   <Row href="https://wa.me/5554996993241" title="WhatsApp" sub="Chame direto, respondo por lá" primary />
-   <Row href="https://www.linkedin.com/in/lucas-ceratto-dagnese-b404b439a/" title="LinkedIn" sub="Trajetória e contato profissional" />
-   <Row href="https://github.com/LucasCerattoRS" title="GitHub" sub="Todo o código, aberto" />
-   <Row href="https://medium.com/@lukelucanolightknowledge" title="Medium" sub="Artigos que escrevi" />
-  </ul>
-
-  <h2>Ferramentas</h2>
-  <ul class="list">
-   <Row href="https://github.com/LucasCerattoRS/video-downloader" title="Video Downloader" sub="Cole o link, baixe. Roda no seu computador" />
-   <Row href="https://github.com/LucasCerattoRS/TranscritorNPU" title="Transcritor" sub="Áudio e vídeo viram texto, offline" />
-  </ul>
-
-  <h2>Projetos</h2>
-  <ul class="list">
-   <Row href="https://github.com/LucasCerattoRS/the-farmer-was-replaced-lab" title="TFWR Lab" sub="Aprendendo programação com o jogo" />
-   <Row href="https://github.com/LucasCerattoRS/horizonte-estudos" title="Horizonte" sub="Banco de questões e material de estudo" />
-   <Row href="https://github.com/LucasCerattoRS/ai-coop" title="AI Coop" sub="Agentes de IA dividindo o mesmo repositório" />
-   <Row href="https://github.com/LucasCerattoRS/finan" title="Finan" sub="Finanças pessoais, dados só com você" />
-  </ul>
+  {sections.map((sec) => (
+    <>
+      <h2>{sec.title}</h2>
+      <ul class={sec.className ? `list ${sec.className}` : 'list'}>
+        {sec.items.map((it) => <Row {...it} />)}
+      </ul>
+    </>
+  ))}
 
   <h2>Apoio</h2>
   <ul class="list">
@@ -65,8 +53,8 @@ import '../glass/glass.css';
 
  <footer><span>Feito à mão, 2026</span><span>Folha única · escala 1:1</span></footer>
 </div>
-<script is:inline>
-const k="+5554996993241",m=document.getElementById("pixmsg"),o=m.textContent;let t;
+<script is:inline define:vars={{ chave: pix.chave }}>
+const k=chave,m=document.getElementById("pixmsg"),o=m.textContent;let t;
 document.getElementById("pix").onclick=async()=>{
  clearTimeout(t);
  try{await navigator.clipboard.writeText(k);m.textContent="Chave copiada: "+k;t=setTimeout(()=>m.textContent=o,4000)}
