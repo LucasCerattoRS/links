@@ -1,0 +1,16 @@
+/* [data-glass] = GlassView. Preenche o pai (como StyleSheet.absoluteFill) e fica atras do texto. */
+[data-glass]{position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;
+ background:var(--glass-tint,var(--glass));box-shadow:inset 0 1px 0 var(--glass-edge),inset 0 0 0 1px var(--glass-edge),0 6px 18px -10px var(--rule)}
+@supports(backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px)){
+ [data-glass=regular]{-webkit-backdrop-filter:blur(14px) saturate(1.6);backdrop-filter:blur(14px) saturate(1.6)}
+ [data-glass=clear]{-webkit-backdrop-filter:blur(4px) saturate(1.3);backdrop-filter:blur(4px) saturate(1.3)}
+ /* refracao de borda (lente) so onde backdrop-filter aceita url(): Chromium. Classe .lg vem do script. */
+ .lg [data-glass=regular]{backdrop-filter:url(#lg-refract) blur(10px) saturate(1.6)}
+ .lg [data-glass=clear]{backdrop-filter:url(#lg-refract) blur(2px) saturate(1.3)}
+}
+[data-glass=none]{background:none;box-shadow:none}
+[data-glass][data-interactive]{transition:transform .2s ease,filter .2s ease}
+:hover>[data-glass][data-interactive],:focus-visible>[data-glass][data-interactive]{filter:brightness(1.06)}
+:active>[data-glass][data-interactive]{transform:scale(.985)}
+@media(prefers-reduced-motion:reduce){[data-glass][data-interactive]{transition:none}}
+@media(prefers-reduced-transparency:reduce){[data-glass]{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:var(--sheet)}}
