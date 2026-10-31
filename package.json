@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "test": "node --experimental-strip-types --no-warnings --test test/links.test.mjs"
+    "test": "node --experimental-strip-types --no-warnings --test test/links.test.mjs tests/clipboard.test.cjs"
   },
   "repository": {
     "type": "git",

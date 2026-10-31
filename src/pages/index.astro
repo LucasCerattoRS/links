@@ -55,10 +55,13 @@ import '../glass/glass.css';
 </div>
 <script is:inline define:vars={{ chave: pix.chave }}>
 const k=chave,m=document.getElementById("pixmsg"),o=m.textContent;let t;
-document.getElementById("pix").onclick=async()=>{
+let tentativa=0;
+const pix=document.getElementById("pix");
+pix.onclick=async()=>{
+ const atual=++tentativa;
  clearTimeout(t);
- try{await navigator.clipboard.writeText(k);m.textContent="Chave copiada: "+k;t=setTimeout(()=>m.textContent=o,4000)}
- catch{m.textContent="Chave Pix (telefone): "+k}};
+ try{await navigator.clipboard.writeText(k);if(atual!==tentativa)return;m.textContent="Chave copiada: "+k;t=setTimeout(()=>m.textContent=o,4000)}
+ catch{if(atual!==tentativa)return;m.textContent="Chave Pix (telefone): "+k}};
 </script>
 </body>
 </html>
