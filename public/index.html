@@ -34,7 +34,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 a{color:inherit}
 :focus-visible{outline:3px solid var(--cut);outline-offset:3px}
 
-.sheet{position:relative;max-width:520px;margin:0 auto;background:color-mix(in srgb,var(--sheet) 55%,transparent);border:2px solid var(--rule);
+.sheet{position:relative;max-width:520px;margin:0 auto;background:var(--sheet);background:color-mix(in srgb,var(--sheet) 55%,transparent);border:2px solid var(--rule);
  padding:20px 16px calc(24px + env(safe-area-inset-bottom))}
 .sheet::before{content:"";position:absolute;inset:5px;border:1px solid var(--rule);pointer-events:none}
 @media(min-width:560px){body{padding:32px 16px}}
@@ -72,8 +72,8 @@ h2::after{content:"";flex:1;border-top:1px solid var(--rule)}
 .row::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--cut);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
 .row:hover::after,.row:focus-visible::after{transform:scaleX(1)}
 .row:hover i,.row:focus-visible i{color:var(--cut)}
-.primary{background:color-mix(in srgb,var(--cut) 88%,transparent);border-color:var(--cut);color:var(--cut-ink)}
-.primary small{color:inherit;opacity:.9}
+.primary{background:var(--cut);background:color-mix(in srgb,var(--cut) 94%,var(--sheet));border-color:var(--cut);color:var(--cut-ink)}
+.primary small{color:inherit}
 .primary::after{background:var(--ink)}
 .primary:hover i,.primary:focus-visible i{color:inherit}
 
