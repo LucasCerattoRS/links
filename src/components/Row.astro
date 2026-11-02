@@ -1,5 +1,4 @@
 ---
-import { GlassView } from 'expo-glass-effect';
-const { href, title, sub, primary } = Astro.props;
+const { href, title, sub, primary, number } = Astro.props;
 ---
-<li class={primary ? 'wa' : undefined}><a class={primary ? 'row primary' : 'row'} href={href}><GlassView isInteractive /><b>{title}</b><i>→</i><small>{sub}</small></a></li>
+<li class={primary ? 'wa' : undefined}><a class={primary ? 'row primary' : 'row'} href={href}><span class="windowbar" aria-hidden="true"><span class="window-dots"></span><span class="window-label">LINK / {number}</span><i>↗</i></span><b>{title}</b><small>{sub}</small></a></li>
